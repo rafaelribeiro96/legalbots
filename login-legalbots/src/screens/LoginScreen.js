@@ -52,7 +52,9 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Insira seu e-mail"
           value={email}
           onChangeText={setEmail}
+          keyboardType="email-address"
         />
+
         <Text style={styles.inputLabel}>Senha</Text>
         <View style={[styles.passwordInputContainer, styles.input]}>
           <TextInput
