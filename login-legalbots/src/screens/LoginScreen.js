@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -7,6 +8,7 @@ const LoginScreen = ({ navigation }) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [buttonEnabled, setButtonEnabled] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   // Verifica se o email e a senha são válidos para habilitar o botão de login
   useEffect(() => {
@@ -52,13 +54,25 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={setEmail}
         />
         <Text style={styles.inputLabel}>Senha</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Insira sua senha"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
+        <View style={[styles.passwordInputContainer, styles.input]}>
+          <TextInput
+            style={[styles.passwordInput]}
+            placeholder="Insira sua senha"
+            secureTextEntry={!isPasswordVisible}
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+            style={styles.passwordVisibilityButton}
+          >
+            <MaterialIcons
+              name={isPasswordVisible ? 'visibility-off' : 'visibility'}
+              size={24}
+              color="#888"
+            />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           style={styles.forgotPasswordButton}
           onPress={() => console.log('Esqueci minha senha')}
@@ -144,6 +158,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
+  },
+  passwordInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  passwordInput: {
+    flex: 1,
   },
   forgotPasswordButton: {
     alignSelf: 'flex-start',
