@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -39,29 +39,48 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail ou nome de usuário"
-        value={email}
-        onChangeText={setEmail}
-      />
-      {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={setPassword}
-      />
-      {passwordError ? <Text style={styles.error}>{passwordError}</Text> : null}
-      <TouchableOpacity
-        style={[styles.button, buttonEnabled ? styles.buttonEnabled : styles.buttonDisabled]}
-        onPress={handleLogin}
-        disabled={!buttonEnabled}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      <Image source={require('../../assets/logo.svg')} style={styles.logo} resizeMode="contain" />
+      <Text style={styles.appName}>LegalBots</Text>
+      <Text style={styles.greeting}>Olá Novamente!</Text>
+      <Text style={styles.subtitle}>Lorem ipsum dolor sit amet</Text>
+      <View style={styles.formContainer}>
+        <Text style={styles.inputLabel}>Email</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Insira seu e-mail"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Text style={styles.inputLabel}>Senha</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Insira sua senha"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity
+          style={styles.forgotPasswordButton}
+          onPress={() => console.log('Esqueci minha senha')}
+        >
+          <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, buttonEnabled ? styles.buttonEnabled : styles.buttonDisabled]}
+          onPress={handleLogin}
+          disabled={!buttonEnabled}
+        >
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+        <View style={styles.divider}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>ou</Text>
+          <View style={styles.dividerLine} />
+        </View>
+        <TouchableOpacity style={styles.googleLoginButton}>
+          <Text style={styles.googleLoginText}>Fazer login com o Google</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -69,16 +88,56 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    borderColor: 'red', // borda vermelha
+    borderWidth: 2,
+  },
+  logoContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
-  title: {
+  logo: {
+    width: 200,
+    height: null,
+  },
+  appName: {
     fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    borderColor: 'red', // borda vermelha
+    borderWidth: 2,
+  },
+  greeting: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    borderColor: 'green', // borda verde
+    borderWidth: 2,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 30,
+    borderColor: 'blue', // borda azul
+    borderWidth: 2,
+  },
+  formContainer: {
+    width: '80%',
+    alignItems: 'center',
     marginBottom: 20,
   },
+  inputLabel: {
+    alignSelf: 'flex-start',
+    fontWeight: 'bold',
+    marginBottom: 5,
+    borderColor: 'purple', // borda roxa
+    borderWidth: 2,
+  },
   input: {
-    width: '80%',
+    width: '100%',
     height: 50,
     borderWidth: 1,
     borderColor: '#ccc',
@@ -86,29 +145,63 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
-  error: {
-    color: 'red',
-    marginBottom: 10,
+  forgotPasswordButton: {
+    alignSelf: 'flex-start',
+    marginBottom: 20,
+  },
+  forgotPasswordText: {
+    color: '#007AFF',
   },
   button: {
-    backgroundColor: '#007AFF',
+    marginTop: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    opacity: 0.5, // definindo a opacidade inicial do botão de login
+    width: '100%',
+    height: 50,
   },
   buttonEnabled: {
     backgroundColor: '#007AFF',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    opacity: 1, // definindo a opacidade habilitada do botão de login
+  },
+  buttonDisabled: {
+    backgroundColor: '#ccc',
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  divider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#ccc',
+  },
+  dividerText: {
+    paddingHorizontal: 10,
+    color: '#ccc',
+  },
+  googleLoginButton: {
+    backgroundColor: '#4285F4',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  googleLoginText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
+
+
+
+
 
 export default LoginScreen;
