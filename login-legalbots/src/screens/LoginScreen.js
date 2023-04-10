@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image } from 'react-native';
+// LoginScreen.js
+
+import React, { useState, useEffect, useContext, useCallback } from 'react';
+import { View, Text, Image, Alert } from 'react-native';
 import stylesLogin from '../styles/LoginCss';
 import FormLogin from '../components/FormLogin';
 import ForgotPasswordButton from '../components/ForgotPasswordButton';
@@ -8,6 +10,7 @@ import Divider from '../components/Divider';
 import GoogleLoginButton from '../components/GoogleLoginButton';
 import TitleSubtitle from '../components/TitleSubtitle';
 import Logo from '../components/Logo';
+import { AuthContext } from '../context/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -16,7 +19,9 @@ const LoginScreen = ({ navigation }) => {
   const [passwordError, setPasswordError] = useState('');
   const [buttonEnabled, setButtonEnabled] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  
+
+  const { signIn } = useContext(AuthContext);
+
   useEffect(() => {
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     const isValidPassword = password.length >= 8 && /[!@#$%^&*(),.?":{}|<>]/.test(password);
@@ -39,17 +44,30 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-  const handleLogin = () => {
+
+  const handleLogin = useCallback(() => {
     validateEmail(email);
     validatePassword(password);
-    // TODO: enviar solicitação ao servidor para verificar as credenciais de login
-    // se as credenciais forem válidas, navegue para a tela inicial do aplicativo
-    navigation.navigate('Home');
+  
+     // Chama a função signIn, passando o email, senha e objeto navigation para autenticação
+    signIn(email, password, navigation).then((result) => {
+      if (!result.success) {
+                // Exibe uma mensagem de erro caso as credenciais sejam inválidas
+        Alert.alert('Erro', result.error);
+      }
+    });
+  }, [email, password, signIn, navigation]);
+
+  const handleForgotPassword = () => {
+    console.log("Botão 'Esqueci minha senha' clicado");
+  };
+
+  const handleGoogleAcount = () => {
+    console.log("Botão Login Google clicado");
   };
 
   return (
-    <View style={stylesLogin.container} >
-
+    <View style={stylesLogin.container}>
       <Logo />
 
       <TitleSubtitle title="Olá Novamente!" subtitle="Lorem ipsum dolor sit amet" />
@@ -67,15 +85,25 @@ const LoginScreen = ({ navigation }) => {
           setIsPasswordVisible={setIsPasswordVisible}
         />
 
-        <ForgotPasswordButton onPress={() => console.log('Esqueci minha senha')} />
+        <ForgotPasswordButton
+          onPress={handleForgotPassword}        
+        />
 
-        <LoginButton onPress={handleLogin} buttonEnabled={buttonEnabled} />
+        <LoginButton
+          onPress={handleLogin}
+          buttonEnabled={buttonEnabled}
+        />
 
-        <Divider />
+        <Divider text="Ou" />
 
-        <GoogleLoginButton onPress={() => console.log('Login com o Google')} />
+        <GoogleLoginButton
+          onPress={handleGoogleAcount}        
+        />
+
+        <Text style={stylesLogin.footerText}>Não tem uma conta? Cadastre-se</Text>
+
       </View>
-      
+
     </View>
   );
 };
