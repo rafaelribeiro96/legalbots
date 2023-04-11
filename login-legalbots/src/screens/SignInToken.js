@@ -8,7 +8,7 @@ import api from "../utils/api";
 
 const SignInToken = () => {
   const navigation = useNavigation();
-  const timeOut = 2000;
+  const timeOut = 1000;
 
   useEffect(() => {
     const singInToken = async () => {
