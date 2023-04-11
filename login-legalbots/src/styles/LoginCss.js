@@ -1,14 +1,8 @@
 const primaria = '#484150';
-const secundaria = '#D1495B';
+const secundaria = '#8360C3';
 const branco = '#FFF';
 const background = 'rgba(178, 203, 225, 0.2)';
-const backgroundButtonLogin = '#D1495B';
-// #D1495B
-// #8360C3
-
-const yellow = '#F2C94C';
-const green = '#6FCF97';
-
+const backgroundButtonLogin = '#8360C3';
 
 export default{
   colors: {
