@@ -19,17 +19,16 @@ const App = () => {
   });
 
   if (!fontsLoaded) {
-    <AppLoading />
+    return <AppLoading />;
   }
 
   return (
     <NavigationContainer>
       <AuthProvider>
-      {/* <Stack.Navigator> */}
       <Stack.Navigator initialRouteName="SignInToken">
-        <Stack.Screen name="SignInToken" component={SignInToken} />
+        <Stack.Screen name="SignInToken" component={SignInToken} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
       </AuthProvider>
     </NavigationContainer>
