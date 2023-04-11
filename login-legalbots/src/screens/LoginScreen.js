@@ -1,7 +1,7 @@
 // LoginScreen.js
 
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { View, Text, Image, Alert } from 'react-native';
+import { View, Alert, Button, TouchableHighlight, Text } from 'react-native';
 import stylesLogin from '../styles/LoginCss';
 import FormLogin from '../components/FormLogin';
 import ForgotPasswordButton from '../components/ForgotPasswordButton';
@@ -48,11 +48,11 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = useCallback(() => {
     validateEmail(email);
     validatePassword(password);
-  
-     // Chama a função signIn, passando o email, senha e objeto navigation para autenticação
+
+    // Chama a função signIn, passando o email, senha e objeto navigation para autenticação
     signIn(email, password, navigation).then((result) => {
       if (!result.success) {
-                // Exibe uma mensagem de erro caso as credenciais sejam inválidas
+        // Exibe uma mensagem de erro caso as credenciais sejam inválidas
         Alert.alert('Erro', result.error);
       }
     });
@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
         />
 
         <ForgotPasswordButton
-          onPress={handleForgotPassword}        
+          onPress={handleForgotPassword}
         />
 
         <LoginButton
@@ -97,10 +97,17 @@ const LoginScreen = ({ navigation }) => {
         <Divider text="Ou" />
 
         <GoogleLoginButton
-          onPress={handleGoogleAcount}        
+          onPress={handleGoogleAcount}
         />
 
-        <Text style={stylesLogin.footerText}>Não tem uma conta? Cadastre-se</Text>
+        <TouchableHighlight
+          style={{ backgroundColor: 'transparent' }}
+          underlayColor="#ccc"
+          onPress={() => navigation.navigate('Register')}
+        >
+          <Text style={{ color: 'black', fontSize: 14 }}>cadastrar</Text>
+        </TouchableHighlight>
+
 
       </View>
 
