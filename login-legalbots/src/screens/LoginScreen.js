@@ -9,15 +9,15 @@ import GoogleLoginButton from '../components/GoogleLoginButton';
 import TitleSubtitle from '../components/TitleSubtitle';
 import Logo from '../components/Logo';
 import { AuthContext } from '../context/AuthContext';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('rafaelfelipe.r@hotmail.com');
-  const [password, setPassword] = useState('senha123!');
+  const [password, setPassword] = useState('Senha123!');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [buttonEnabled, setButtonEnabled] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
   const { signIn } = useContext(AuthContext);
 
   useEffect(() => {
@@ -42,7 +42,6 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-
   const handleLogin = useCallback(() => {
     validateEmail(email);
     validatePassword(password);
@@ -63,7 +62,13 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={stylesLogin.container}>
+    <LinearGradient
+      colors={['rgba(178, 203, 225, 0.3)', 'rgba(201, 187, 187, 0)']}
+      style={stylesLogin.container}
+      start={{ x: 0.1, y: 0.2 }}
+      end={{ x: 0.9, y: 0.8 }}
+    >
+
       <Logo />
 
       <TitleSubtitle title="Olá Novamente!" subtitle="Lorem ipsum dolor sit amet" />
@@ -82,7 +87,7 @@ const LoginScreen = ({ navigation }) => {
         />
 
         <ForgotPasswordButton
-          onPress={handleForgotPassword}
+          onPress={() => navigation.navigate('Register')}
         />
 
         <LoginButton
@@ -96,20 +101,9 @@ const LoginScreen = ({ navigation }) => {
           onPress={handleGoogleAcount}
         />
 
-
-        {/* Botão teste de cadastrar */}
-        <TouchableHighlight
-          style={{ backgroundColor: 'transparent' }}
-          underlayColor="#ccc"
-          onPress={() => navigation.navigate('Register')}
-        >
-          <Text style={{ color: 'black', fontSize: 14 }}>cadastrar</Text>
-        </TouchableHighlight>
-
-
       </View>
 
-    </View>
+    </LinearGradient>
   );
 };
 

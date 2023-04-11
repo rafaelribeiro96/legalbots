@@ -1,20 +1,20 @@
 const primaria = '#484150';
 const secundaria = '#8360C3';
 const branco = '#FFF';
-const background = 'rgba(178, 203, 225, 0.2)';
+const borda = '#E8E8E8';
 const backgroundButtonLogin = '#8360C3';
+// const background = 'rgba(178, 203, 225, 0.3)', 'rgba(201, 187, 187, 0)';
 
 export default{
   colors: {
     primaria: primaria,
     secundaria: secundaria,
     branco: branco,
-    background: background,
     backgroundButtonLogin: backgroundButtonLogin,
+    borda: borda,
   },
   container: {
     flex: 1,
-    backgroundColor: background,
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
@@ -48,7 +48,7 @@ export default{
   formContainer: {
     width: '80%',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 40,
   },
   inputLabel: {
     alignSelf: 'flex-start',
@@ -83,7 +83,7 @@ export default{
   },
   forgotPasswordButton: {
     alignSelf: 'flex-start',
-    marginBottom: 20,
+    marginTop: 15,
   },
   forgotPasswordText: {
     color: secundaria,
@@ -93,19 +93,19 @@ export default{
     textDecorationLine: 'underline',
   },
   button: {
-    marginTop: 20,
+    marginTop: 25,
     justifyContent: 'center',
     paddingHorizontal: 20,
     borderRadius: 8,
     width: '100%',
     height: 54,
   },
-  buttonEnabled: {
-    backgroundColor: backgroundButtonLogin,
-  },
-  buttonDisabled: {
-    backgroundColor: '#ccc',
-  },
+  // buttonEnabled: {
+  //   backgroundColor: backgroundButtonLogin,
+  // },
+  // buttonDisabled: {
+  //   backgroundColor: '#ccc',
+  // },
   buttonText: {
     color: '#fff',
     textAlign: 'center',
@@ -116,7 +116,7 @@ export default{
   divider: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 20,
+    marginTop: 40,
   },
   dividerLine: {
     width: 80,
@@ -133,7 +133,7 @@ export default{
   googleLoginButton: {
     paddingVertical: 10,
     borderRadius: 5,
-    marginTop: 10,
+    marginTop: 30,
   },
   logoGoogle: {
     width: 20,

@@ -34,7 +34,7 @@ const FormLogin = ({
     <>
       <Text style={stylesLogin.inputLabel}>Email</Text>
       <TextInput
-        style={[stylesLogin.input, { borderColor: isFocused ? stylesLogin.colors.secundaria : stylesLogin.colors.primaria }]}
+        style={[stylesLogin.input, { borderColor: isFocused ? stylesLogin.colors.secundaria : stylesLogin.colors.borda }]}
         placeholder="Insira seu e-mail"
         value={email}
         onChangeText={setEmail}
@@ -44,7 +44,7 @@ const FormLogin = ({
       />
 
       <Text style={stylesLogin.inputLabel}>Senha</Text>
-      <View style={[stylesLogin.passwordInputContainer, stylesLogin.input, { borderColor: isFocusedPassword ? stylesLogin.colors.secundaria : stylesLogin.colors.primaria }]}>
+      <View style={[stylesLogin.passwordInputContainer, stylesLogin.input, { borderColor: isFocusedPassword ? stylesLogin.colors.secundaria : stylesLogin.colors.branco }]}>
         <TextInput
           style={[stylesLogin.passwordInput]}
           placeholder="Insira sua senha"

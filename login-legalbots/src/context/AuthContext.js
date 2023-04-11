@@ -4,8 +4,6 @@ import api from '../utils/api';
 
 export const AuthContext = createContext({});
 
-
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   
@@ -38,7 +36,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
   
-
   const signOut = async () => {
     try {
       setUser(null);
