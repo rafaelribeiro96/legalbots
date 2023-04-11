@@ -13,8 +13,8 @@ import Logo from '../components/Logo';
 import { AuthContext } from '../context/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('rafaelfelipe.r@hotmail.com');
+  const [password, setPassword] = useState('senha123!');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [buttonEnabled, setButtonEnabled] = useState(false);
