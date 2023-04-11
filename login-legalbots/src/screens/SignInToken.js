@@ -1,38 +1,3 @@
-// import { useNavigation } from "@react-navigation/core";
-// import React, { useContext, useEffect } from "react";
-// import { View, StyleSheet, ActivityIndicator } from "react-native";
-// import { AuthContext } from "../context/AuthContext";
-
-// const SignInToken = () => {
-//   const navigation = useNavigation();
-//   const { signed } = useContext(AuthContext);
-
-//   useEffect(() => {
-//     if (signed) {
-//       navigation.navigate("Home");
-//     } else {
-//       navigation.navigate("Login");
-//     }
-//   }, [signed]);
-
-//   return (
-//     <View style={styles.container}>
-//       <ActivityIndicator color="black" size={40} />
-//     </View>
-//   );
-// };
-
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
-
-// export default SignInToken;
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/core";
 import React, { useEffect } from "react";

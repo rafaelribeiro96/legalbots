@@ -8,82 +8,6 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
-
-  const fetchUser = async (token) => {
-    try {
-      const response = await api.get("/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const hasUser = response.data.find((user) => user.email === token);
-      if (hasUser) setUser(hasUser);
-    } catch (e) {
-      console.log(`error fetchUser: ${e}`);
-    }
-  };
-  
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     const token = await AsyncStorage.getItem("user_token");
-  //     if (token) {
-  //       try {
-  //         console.log(`Bearer ${token}`);
-          
-  //         const response = await api.get("/", {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         });
-  //         console.log("response:", response);
-  //         console.log("response.data:", response.data);
-  //         const hasUser = response.data.find((user) => user.email === token);
-  //         console.log("hasUser:", hasUser);
-  //         if (hasUser) {
-  //           setUser(hasUser);
-  //         } else {
-  //           await AsyncStorage.removeItem("user_token");
-  //         }
-  //       } catch (e) {
-  //         console.log(`error checkout: ${e}`);
-  //         await AsyncStorage.removeItem("user_token");
-  //       }
-  //     }
-  //   };
-    
-  //   checkAuth();
-  // }, []);
-
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     const token = await AsyncStorage.getItem("user_token");
-  //     if (token) {
-  //       try {
-  //         console.log(`Bearer ${token}`);
-          
-  //         const response = await api.get("/", {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         });
-  //         console.log("response:", response);
-  //         console.log("response.data:", response.data);
-  //         const hasUser = response.data.find((user) => user.email === token);
-  //         console.log("hasUser:", hasUser);
-  //         if (hasUser) {
-  //           setUser(hasUser);
-  //         } else {
-  //           await AsyncStorage.removeItem("user_token");
-  //         }
-  //       } catch (e) {
-  //         console.log(`error checkout: ${e}`);
-  //         await AsyncStorage.removeItem("user_token");
-  //       }
-  //     }
-  //   };
-    
-  //   checkAuth();
-  // }, []);
   
   const signIn = async (email, password, navigation) => {
     try {
@@ -126,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-    value={{ user, signed: !!user, signIn, signOut, fetchUser: (token) => fetchUser(token) }}
+    value={{ user, signed: !!user, signIn, signOut }}
     >
       {children}
     </AuthContext.Provider>
