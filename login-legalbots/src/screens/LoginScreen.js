@@ -1,5 +1,3 @@
-// LoginScreen.js
-
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { View, Alert, Button, TouchableHighlight, Text } from 'react-native';
 import stylesLogin from '../styles/LoginCss';
@@ -24,7 +22,7 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
-    const isValidPassword = password.length >= 8 && /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const isValidPassword = password.length >= 1;
     setButtonEnabled(isValidEmail && isValidPassword);
   }, [email, password]);
 
@@ -37,8 +35,8 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const validatePassword = (password) => {
-    if (password.length < 8 || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      setPasswordError('A senha deve conter pelo menos 8 caracteres e um caractere especial');
+    if (password.length < 1) {
+      setPasswordError('Você deve inserir uma senha');
     } else {
       setPasswordError('');
     }
@@ -49,10 +47,8 @@ const LoginScreen = ({ navigation }) => {
     validateEmail(email);
     validatePassword(password);
 
-    // Chama a função signIn, passando o email, senha e objeto navigation para autenticação
     signIn(email, password, navigation).then((result) => {
       if (!result.success) {
-        // Exibe uma mensagem de erro caso as credenciais sejam inválidas
         Alert.alert('Erro', result.error);
       }
     });
@@ -100,6 +96,8 @@ const LoginScreen = ({ navigation }) => {
           onPress={handleGoogleAcount}
         />
 
+
+        {/* Botão teste de cadastrar */}
         <TouchableHighlight
           style={{ backgroundColor: 'transparent' }}
           underlayColor="#ccc"
