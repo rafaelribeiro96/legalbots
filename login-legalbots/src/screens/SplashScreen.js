@@ -13,10 +13,8 @@ const SignInToken = () => {
   useEffect(() => {
     const singInToken = async () => {
       const token = await AsyncStorage.getItem("user_token");
-      console.log("token:", token);
       if (token) {
         try {
-          console.log(`Bearer ${token}`);
           const data = await api.get("/", {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -25,18 +23,17 @@ const SignInToken = () => {
           navigation.navigate("Home");
         } catch (e) {
           navigation.navigate("Login");
-          console.log(e);
         }
       } else {
         setTimeout(() => {
           navigation.navigate("Login");
-        }, timeOut); // atrasa a navegação por 4 segundos
+        }, timeOut);
       }
     };
 
     setTimeout(() => {
       singInToken();
-    }, timeOut); // atrasa a navegação por 4 segundos
+    }, timeOut);
   }, []);
 
   return (

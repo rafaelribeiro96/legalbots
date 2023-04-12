@@ -47,13 +47,19 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = useCallback(() => {
     validateEmail(email);
     validatePassword(password);
-
-    signIn(email, password, navigation).then((result) => {
-      if (!result.success) {
-        Alert.alert('Erro', result.error);
-      }
-    });
+  
+    signIn(email, password, navigation)
+      .then((result) => {
+        if (!result.success) {
+          Alert.alert('Erro', result.error);
+        }
+      })
+      .catch((error) => {
+        console.log('Erro ao fazer login:', error);
+        Alert.alert('Erro', 'Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.');
+      });
   }, [email, password, signIn, navigation]);
+  
 
   const handleForgotPassword = () => {
     console.log("Botão 'Esqueci minha senha' clicado");
