@@ -1,12 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, Text, Button } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import stylesLogin from '../styles/LoginCss';
 import { LinearGradient } from 'expo-linear-gradient';
+import color from '../styles/colors';
 
 const LoginButton = ({ onPress, buttonEnabled }) => {
   return (
     <LinearGradient
-    colors={buttonEnabled ? ['#8360C3', '#2EBF91'] : ['grey', 'grey']}
+    colors={buttonEnabled ? color.backgroundButtonLogin : ['grey', 'grey']}
     style={stylesLogin.button}
     start={{ x: 0.1, y: 0.2 }}
     end={{ x: 0.9, y: 0.8 }}

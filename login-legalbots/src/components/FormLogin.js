@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import stylesLogin from '../styles/LoginCss';
 
@@ -34,7 +34,7 @@ const FormLogin = ({
     <>
       <Text style={stylesLogin.inputLabel}>Email</Text>
       <TextInput
-        style={[stylesLogin.input, { borderColor: isFocused ? stylesLogin.colors.secundaria : stylesLogin.colors.borda }]}
+        style={[stylesLogin.input, { borderColor: isFocused ? stylesLogin.colors.secundaria : stylesLogin.colors.bordaInput }]}
         placeholder="Insira seu e-mail"
         value={email}
         onChangeText={setEmail}
@@ -44,7 +44,7 @@ const FormLogin = ({
       />
 
       <Text style={stylesLogin.inputLabel}>Senha</Text>
-      <View style={[stylesLogin.passwordInputContainer, stylesLogin.input, { borderColor: isFocusedPassword ? stylesLogin.colors.secundaria : stylesLogin.colors.branco }]}>
+      <View style={[stylesLogin.passwordInputContainer, stylesLogin.input, { borderColor: isFocusedPassword ? stylesLogin.colors.secundaria : stylesLogin.colors.bordaInput }]}>
         <TextInput
           style={[stylesLogin.passwordInput]}
           placeholder="Insira sua senha"

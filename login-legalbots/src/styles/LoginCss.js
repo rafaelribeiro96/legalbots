@@ -1,17 +1,13 @@
-const primaria = '#484150';
-const secundaria = '#8360C3';
-const branco = '#FFF';
-const borda = '#E8E8E8';
-const backgroundButtonLogin = '#8360C3';
-// const background = 'rgba(178, 203, 225, 0.3)', 'rgba(201, 187, 187, 0)';
+import fonts from './fonts';
+import colors from './colors';
 
 export default{
   colors: {
-    primaria: primaria,
-    secundaria: secundaria,
-    branco: branco,
-    backgroundButtonLogin: backgroundButtonLogin,
-    borda: borda,
+    primaria: colors.primaria,
+    secundaria: colors.secundaria,
+    backgroundInput: colors.backgroundInput,
+    backgroundButtonLogin: colors.backgroundButtonLogin,
+    bordaInput: colors.bordaInput,
   },
   container: {
     flex: 1,
@@ -34,16 +30,16 @@ export default{
   greeting: {
     fontSize: 24,
     lineHeight: 32,
-    fontFamily: 'Poppins_600SemiBold',
-    color: primaria,
+    fontFamily: fonts.Poppins_600SemiBold,
+    color: colors.primaria,
   },
   subtitle: {
     fontSize: 16,
     color: '#666',
     lineHeight: 24,
     marginBottom: 30,
-    fontFamily: 'Poppins_300Light',
-    color: primaria,
+    fontFamily: fonts.Poppins_300Light,
+    color: colors.primaria,
   },
   formContainer: {
     width: '80%',
@@ -56,7 +52,7 @@ export default{
     marginBottom: 8,
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'Poppins_300Light',
+    fontFamily: fonts.Poppins_300Light,
   },
   input: {
     width: '100%',
@@ -67,9 +63,9 @@ export default{
     marginBottom: 10,
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'Poppins_400Regular',
-    color: primaria,
-    backgroundColor: branco,
+    fontFamily: fonts.Poppins_400Regular,
+    color: colors.primaria,
+    backgroundColor: colors.backgroundInput,
   },
   passwordInputContainer: {
     flexDirection: 'row',
@@ -79,17 +75,17 @@ export default{
     flex: 1,
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'Poppins_400Regular',
+    fontFamily: fonts.Poppins_400Regular,
   },
   forgotPasswordButton: {
     alignSelf: 'flex-start',
     marginTop: 15,
   },
   forgotPasswordText: {
-    color: secundaria,
+    color: colors.secundaria,
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Poppins_400Regular',
+    fontFamily: fonts.Poppins_400Regular,
     textDecorationLine: 'underline',
   },
   button: {
@@ -111,7 +107,7 @@ export default{
     textAlign: 'center',
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'Poppins_500Medium',
+    fontFamily: fonts.Poppins_500Medium,
   },
   divider: {
     flexDirection: 'row',
@@ -128,7 +124,7 @@ export default{
     color: '#ccc',
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Poppins_400Regular',
+    fontFamily: fonts.Poppins_400Regular,
   },
   googleLoginButton: {
     paddingVertical: 10,
@@ -142,7 +138,7 @@ export default{
   googleLoginText: {
     fontSize: 14,
     lineHeight: 21,
-    fontFamily: 'Poppins_500Medium',
-    color: primaria,
+    fontFamily: fonts.Poppins_500Medium,
+    color: colors.primaria,
     },
  };
