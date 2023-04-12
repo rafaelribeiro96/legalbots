@@ -10,6 +10,7 @@ import TitleSubtitle from '../components/TitleSubtitle';
 import Logo from '../components/Logo';
 import { AuthContext } from '../context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('rafaelfelipe.r@hotmail.com');
@@ -62,6 +63,8 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
+    <KeyboardAwareScrollView
+    contentContainerStyle={{ flexGrow: 1 }}>
     <LinearGradient
       colors={['rgba(178, 203, 225, 0.3)', 'rgba(201, 187, 187, 0)']}
       style={stylesLogin.container}
@@ -104,6 +107,8 @@ const LoginScreen = ({ navigation }) => {
       </View>
 
     </LinearGradient>
+
+    </KeyboardAwareScrollView>
   );
 };
 
