@@ -6,7 +6,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import { useFonts, Poppins_600SemiBold, Poppins_400Regular, Poppins_500Medium, Poppins_300Light  } from '@expo-google-fonts/poppins'
 import AppLoading from 'expo-app-loading';
 import { AuthProvider } from './src/context/AuthContext';
-import SignInToken from './src/screens/SignInToken';
+import SplashScreen from './src/screens/SplashScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 
 const Stack = createStackNavigator();
@@ -26,8 +26,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
-      <Stack.Navigator initialRouteName="SignInToken">
-        <Stack.Screen name="SignInToken" component={SignInToken} options={{ headerShown: false }}/>
+      <Stack.Navigator initialRouteName="SplashScreen">
+        <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />

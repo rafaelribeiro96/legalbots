@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import api from '../utils/api';
 import { MaterialIcons } from '@expo/vector-icons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -62,6 +63,8 @@ const RegisterScreen = ({ navigation }) => {
 
 
   return (
+    <KeyboardAwareScrollView
+    contentContainerStyle={{ flexGrow: 1 }}>
     <View style={styles.container}>
 
       <Text style={styles.titlePage}>Cadastro de Usuário</Text>
@@ -146,6 +149,7 @@ const RegisterScreen = ({ navigation }) => {
       </TouchableOpacity>
 
     </View>
+    </KeyboardAwareScrollView>
   );
 };
 
