@@ -1,23 +1,24 @@
+// React imports
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { View, Alert, Button, TouchableHighlight, Text } from 'react-native';
-import stylesLogin from '../styles/LoginCss';
+import { View, Alert } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormLogin from '../components/FormLogin';
 import ForgotPasswordButton from '../components/ForgotPasswordButton';
-import LoginButton from '../components/LoginButton';
-import Divider from '../components/Divider';
 import GoogleLoginButton from '../components/GoogleLoginButton';
-import TitleSubtitle from '../components/TitleSubtitle';
+import LoginButton from '../components/LoginButton';
 import Logo from '../components/Logo';
+import Divider from '../components/Divider';
+import TitleSubtitle from '../components/TitleSubtitle';
 import { AuthContext } from '../context/AuthContext';
-import { LinearGradient } from 'expo-linear-gradient';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import stylesLogin from '../styles/LoginCss';
 import color from '../styles/colors';
+import { validateEmail, validatePassword } from '../utils/validators';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('rafaelfelipe.r@hotmail.com');
+  const [email, setEmail] = useState('rafael.ribeiro@base2.com.br');
   const [password, setPassword] = useState('Senha123!');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [buttonEnabled, setButtonEnabled] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { signIn } = useContext(AuthContext);
@@ -28,45 +29,28 @@ const LoginScreen = ({ navigation }) => {
     setButtonEnabled(isValidEmail && isValidPassword);
   }, [email, password]);
 
-  const validateEmail = (email) => {
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setEmailError('Por favor, insira um email válido');
-    } else {
-      setEmailError('');
-    }
-  };
-
-  const validatePassword = (password) => {
-    if (password.length < 1) {
-      setPasswordError('Você deve inserir uma senha');
-    } else {
-      setPasswordError('');
-    }
-  };
-
-  const handleLogin = useCallback(() => {
+  const handleLogin = useCallback(async () => {
     validateEmail(email);
     validatePassword(password);
-  
-    signIn(email, password, navigation)
-      .then((result) => {
-        if (!result.success) {
-          Alert.alert('Erro', result.error);
-        }
-      })
-      .catch((error) => {
-        console.log('Erro ao fazer login:', error);
-        Alert.alert('Erro', 'Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.');
-      });
+    try {
+      const result = await signIn(email, password, navigation);
+      if (!result.success) {
+        Alert.alert('Erro', result.error);
+      }
+    } catch (error) {
+      console.log('Erro ao fazer login:', error);
+      Alert.alert(
+        'Erro',
+        'Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.'
+      );
+    }
   }, [email, password, signIn, navigation]);
+
+  // const handleForgotPassword = async () => {
+  //   console.log("Botão 'Esqueci minha senha' clicado");};
   
-
-  const handleForgotPassword = () => {
-    console.log("Botão 'Esqueci minha senha' clicado");
-  };
-
-  const handleGoogleAcount = () => {
-    console.log("Botão Login Google clicado");
+  const handleGoogleAcount = async () => {
+    console.log("Botão Login Google clicado");  
   };
 
   return (
@@ -89,8 +73,6 @@ const LoginScreen = ({ navigation }) => {
           password={password}
           setEmail={setEmail}
           setPassword={setPassword}
-          emailError={emailError}
-          passwordError={passwordError}
           buttonEnabled={buttonEnabled}
           isPasswordVisible={isPasswordVisible}
           setIsPasswordVisible={setIsPasswordVisible}

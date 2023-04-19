@@ -1,11 +1,11 @@
-const Poppins_300Light = 'Poppins_300Light';
-const Poppins_400Regular = 'Poppins_400Regular';
-const Poppins_500Medium = 'Poppins_500Medium';
-const Poppins_600SemiBold = 'Poppins_600SemiBold';
+const font_300 = 'Poppins_300Light';
+const font_400 = 'Poppins_400Regular';
+const font_500 = 'Poppins_500Medium';
+const font_600 = 'Poppins_600SemiBold';
 
 export default {
-  Poppins_300Light,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
+  font_300,
+  font_400,
+  font_500,
+  font_600,
 };

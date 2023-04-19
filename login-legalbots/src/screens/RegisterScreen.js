@@ -3,13 +3,15 @@ import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-nativ
 import api from '../utils/api';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import fonts from '../styles/fonts';
+import colors from '../styles/colors';
 
 const RegisterScreen = ({ navigation }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [confirmEmail, setConfirmEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('teste');
+  const [email, setEmail] = useState('teste@teste.com');
+  const [confirmEmail, setConfirmEmail] = useState('teste@teste.com');
+  const [password, setPassword] = useState('Senha123!');
+  const [confirmPassword, setConfirmPassword] = useState('Senha123!');
   const [errorMessage, setErrorMessage] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
@@ -53,11 +55,14 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     try {
-      await api.post('/criar', { name, email: lowercaseEmail, password });
+      await api.post('/register', { name, email, password });
       navigation.navigate('Login');
     } catch (error) {
-      console.log(error);
-      setErrorMessage('Ocorreu um erro ao criar sua conta');
+      if (error.response && error.response.status === 409) {
+        setErrorMessage('Usuário já existe');
+      } else {
+        setErrorMessage('Ocorreu um erro ao criar sua conta');
+      }
     }
   };
 
@@ -98,7 +103,7 @@ const RegisterScreen = ({ navigation }) => {
         keyboardType="email-address"
       />
 
-      <View style={styles.passwordInput}>
+      <View style={styles.textInput}>
         <TextInput
           placeholder="Insira sua senha"
           secureTextEntry={!isPasswordVisible}
@@ -117,7 +122,7 @@ const RegisterScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.passwordInput}>
+      <View style={styles.textInput}>
         <TextInput
           placeholder="Confirme sua senha"
           secureTextEntry={!isConfirmPasswordVisible}
@@ -157,12 +162,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   titlePage: {
     fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 24
+    marginBottom: 24,
+    fontFamily: fonts.font_600,
   },
   errorMessage: {
     color: 'red',
@@ -174,33 +179,32 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 12,
-    paddingHorizontal: 8
-  },
-  passwordInput: {
-    width: '80%',
-    height: 48,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
+    paddingHorizontal: 18,
     flexDirection: 'row',
-    alignItems: 'center'
+    borderRadius: 10,
+    alignItems: 'center',
+    fontFamily: fonts.font_400,
+    backgroundColor: colors.backgroundInput,
+    borderColor: colors.primaria,
   },
   textPassword: {
-    flex: 1
+    flex: 1,
+    fontFamily: fonts.font_400,
   },
   button: {
-    backgroundColor: 'black',
+    backgroundColor: colors.primaria,
     padding: 12,
-    width: 250,
+    width: '80%',
     margin: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    marginTop: 24,
   },
   buttonText: {
-    color: 'white',
+    color: colors.bordaInput,
     fontSize: 18,
     textAlign: 'center',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    fontFamily: fonts.font_500,
   }
 });
 

@@ -20,7 +20,7 @@ export default{
   },
   logo: {
     width: 140,
-    height: 26,
+    height: 27,
     marginTop: 100,
   },
   titles: {
@@ -30,7 +30,7 @@ export default{
   greeting: {
     fontSize: 24,
     lineHeight: 32,
-    fontFamily: fonts.Poppins_600SemiBold,
+    fontFamily: fonts.font_600,
     color: colors.primaria,
   },
   subtitle: {
@@ -38,7 +38,7 @@ export default{
     color: '#666',
     lineHeight: 24,
     marginBottom: 30,
-    fontFamily: fonts.Poppins_300Light,
+    fontFamily: fonts.font_300,
     color: colors.primaria,
   },
   formContainer: {
@@ -48,11 +48,10 @@ export default{
   },
   inputLabel: {
     alignSelf: 'flex-start',
-    fontWeight: 'bold',
     marginBottom: 8,
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: fonts.Poppins_300Light,
+    fontFamily: fonts.font_500,
   },
   input: {
     width: '100%',
@@ -63,7 +62,7 @@ export default{
     marginBottom: 10,
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: fonts.Poppins_400Regular,
+    fontFamily: fonts.font_400,
     color: colors.primaria,
     backgroundColor: colors.backgroundInput,
   },
@@ -75,7 +74,7 @@ export default{
     flex: 1,
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: fonts.Poppins_400Regular,
+    fontFamily: fonts.font_400,
   },
   forgotPasswordButton: {
     alignSelf: 'flex-start',
@@ -85,7 +84,7 @@ export default{
     color: colors.secundaria,
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: fonts.Poppins_400Regular,
+    fontFamily: fonts.font_400,
     textDecorationLine: 'underline',
   },
   button: {
@@ -96,18 +95,12 @@ export default{
     width: '100%',
     height: 54,
   },
-  // buttonEnabled: {
-  //   backgroundColor: backgroundButtonLogin,
-  // },
-  // buttonDisabled: {
-  //   backgroundColor: '#ccc',
-  // },
   buttonText: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: fonts.Poppins_500Medium,
+    fontFamily: fonts.font_500,
   },
   divider: {
     flexDirection: 'row',
@@ -124,21 +117,23 @@ export default{
     color: '#ccc',
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: fonts.Poppins_400Regular,
+    fontFamily: fonts.font_400,
   },
   googleLoginButton: {
     paddingVertical: 10,
     borderRadius: 5,
     marginTop: 30,
+    flexDirection: 'row',
   },
   logoGoogle: {
     width: 20,
     height: 20,
+    marginRight: 5,
   },
   googleLoginText: {
     fontSize: 14,
     lineHeight: 21,
-    fontFamily: fonts.Poppins_500Medium,
+    fontFamily: fonts.font_500,
     color: colors.primaria,
     },
  };

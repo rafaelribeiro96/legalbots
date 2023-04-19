@@ -5,8 +5,8 @@ import stylesLogin from '../styles/LoginCss';
 const GoogleLoginButton = ({ onPress }) => {
   return (
     <TouchableOpacity style={stylesLogin.googleLoginButton} onPress={onPress}>
-      <Text style={stylesLogin.googleLoginText}>
         <Image source={require('../../assets/logoGoogle.png')} style={stylesLogin.logoGoogle} />
+      <Text style={stylesLogin.googleLoginText}>
         Fazer login com o Google</Text>
     </TouchableOpacity>
   );
